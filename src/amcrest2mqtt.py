@@ -30,6 +30,7 @@ mqtt_tls_enabled = os.getenv("MQTT_TLS_ENABLED") == "true"
 mqtt_tls_ca_cert = os.getenv("MQTT_TLS_CA_CERT")
 mqtt_tls_cert = os.getenv("MQTT_TLS_CERT")
 mqtt_tls_key = os.getenv("MQTT_TLS_KEY")
+mqtt_prefix = os.getenv("MQTT_PREFIX") or "amcrest2mqtt"
 
 home_assistant = os.getenv("HOME_ASSISTANT") == "true"
 home_assistant_prefix = os.getenv("HOME_ASSISTANT_PREFIX") or "homeassistant"
@@ -177,15 +178,15 @@ log(f"Device name: {device_name}")
 
 # MQTT topics
 topics = {
-    "config": f"amcrest2mqtt/{serial_number}/config",
-    "status": f"amcrest2mqtt/{serial_number}/status",
-    "event": f"amcrest2mqtt/{serial_number}/event",
-    "motion": f"amcrest2mqtt/{serial_number}/motion",
-    "doorbell": f"amcrest2mqtt/{serial_number}/doorbell",
-    "human": f"amcrest2mqtt/{serial_number}/human",
-    "storage_used": f"amcrest2mqtt/{serial_number}/storage/used",
-    "storage_used_percent": f"amcrest2mqtt/{serial_number}/storage/used_percent",
-    "storage_total": f"amcrest2mqtt/{serial_number}/storage/total",
+    "config": f"{mqtt_prefix}/{serial_number}/config",
+    "status": f"{mqtt_prefix}/{serial_number}/status",
+    "event": f"{mqtt_prefix}/{serial_number}/event",
+    "motion": f"{mqtt_prefix}/{serial_number}/motion",
+    "doorbell": f"{mqtt_prefix}/{serial_number}/doorbell",
+    "human": f"{mqtt_prefix}/{serial_number}/human",
+    "storage_used": f"{mqtt_prefix}/{serial_number}/storage/used",
+    "storage_used_percent": f"{mqtt_prefix}/{serial_number}/storage/used_percent",
+    "storage_total": f"{mqtt_prefix}/{serial_number}/storage/total",
     "home_assistant_legacy": {
         "doorbell": f"{home_assistant_prefix}/binary_sensor/amcrest2mqtt-{serial_number}/{device_slug}_doorbell/config",
         "human": f"{home_assistant_prefix}/binary_sensor/amcrest2mqtt-{serial_number}/{device_slug}_human/config",
