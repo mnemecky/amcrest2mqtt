@@ -1,0 +1,15 @@
+version: "3"
+services:
+    amcrest2mqtt:
+        container_name: amcrest2mqtt
+        image: ringnet/amcrest2mqtt
+        logging:
+            driver: "none"
+        restart: unless-stopped
+        environment:
+            AMCREST_HOST: 10.0.0.203
+            AMCREST_PASSWORD: Monica56
+            MQTT_HOST: 10.0.0.52
+            MQTT_USERNAME: "amcrest"
+            MQTT_PREFIX: "/doorbell"
+            HOME_ASSISTANT: "false"
